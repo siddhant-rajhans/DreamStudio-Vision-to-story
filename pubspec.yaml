@@ -1,0 +1,32 @@
+name: storylens
+description: StoryLens - Real-time Voice & Vision Collaborative Story Director
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+  flutter: '>=3.16.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.1.0
+  flutter_animate: ^4.3.0
+  smooth_page_indicator: ^1.1.0
+  percent_indicator: ^4.2.3
+  iconsax: ^0.0.8
+  camera: ^0.10.5+2
+  video_player: ^2.8.1
+
+  permission_handler: ^12.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/videos/background.mp4
