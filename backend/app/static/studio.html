@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Studio — StoryLine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-elevated: #1a1a28;
+    --bg-overlay: rgba(10,10,15,0.85);
+    --text-primary: #e8e6e3;
+    --text-secondary: #9a97a0;
+    --text-muted: #5a5760;
+    --accent-warm: #E8A87C;
+    --accent-pink: #D4789C;
+    --accent-blue: #6C8EBF;
+    --accent-green: #7BC47F;
+    --accent-red: #E07070;
+    --gradient-primary: linear-gradient(135deg, #E8A87C, #D4789C);
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-light: rgba(255,255,255,0.1);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); -webkit-font-smoothing: antialiased; height: 100vh; overflow: hidden; }
+
+/* SPLASH */
+.splash { position: fixed; inset: 0; z-index: 200; background: var(--bg-primary); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.6s ease, visibility 0.6s ease; }
+.splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.splash.fade-out { opacity: 0; }
+.splash-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.12; pointer-events: none; }
+.splash-orb-1 { width: 400px; height: 400px; background: #E8A87C; top: 20%; left: 10%; }
+.splash-orb-2 { width: 350px; height: 350px; background: #D4789C; bottom: 10%; right: 15%; }
+.splash-content { position: relative; z-index: 2; text-align: center; }
+.splash-logo { display: flex; align-items: center; gap: 0.75rem; font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin-bottom: 1rem; justify-content: center; }
+.splash-logo svg { width: 48px; height: 48px; }
+.splash-logo-text { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.splash-tagline { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2.5rem; font-weight: 300; }
+.splash-btn { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--gradient-primary); color: var(--bg-primary); border: none; font-family: var(--font-body); font-size: 1.05rem; font-weight: 600; padding: 0.85rem 2.25rem; border-radius: var(--radius-xl); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
+.splash-btn:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(232,168,124,0.2); }
+.splash-hint { margin-top: 1.25rem; font-size: 0.75rem; color: var(--text-muted); }
+
+/* APP LAYOUT */
+.app { display: grid; grid-template-rows: auto 1fr auto auto; height: 100vh; }
+.app.hidden { display: none; }
+
+/* TOP BAR */
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 1.25rem; background: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle); }
+.topbar-brand { font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+.topbar-center { display: flex; align-items: center; gap: 1rem; }
+.mood-badge { font-size: 0.7rem; color: var(--accent-blue); background: var(--bg-elevated); padding: 0.2rem 0.65rem; border-radius: var(--radius-xl); border: 1px solid rgba(108,142,191,0.2); transition: color 0.3s, border-color 0.3s; }
+.mood-badge.mysterious { color: var(--accent-blue); border-color: rgba(108,142,191,0.3); }
+.mood-badge.tense { color: var(--accent-red); border-color: rgba(224,112,112,0.3); }
+.mood-badge.wonder { color: var(--accent-warm); border-color: rgba(232,168,124,0.3); }
+.mood-badge.triumphant { color: var(--accent-green); border-color: rgba(123,196,127,0.3); }
+.mood-badge.melancholy { color: var(--accent-pink); border-color: rgba(212,120,156,0.3); }
+.topbar-status { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: var(--text-muted); }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); transition: background 0.3s, box-shadow 0.3s; }
+.status-dot.connected { background: var(--accent-green); box-shadow: 0 0 6px rgba(123,196,127,0.5); animation: pulse 2s infinite; }
+.status-dot.connecting { background: var(--accent-warm); animation: pulse 1s infinite; }
+.status-dot.disconnected { background: var(--text-muted); }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+.topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+.topbar-link { font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+.topbar-link:hover { color: var(--text-primary); }
+.topbar-end-btn { font-size: 0.75rem; color: var(--accent-warm); background: rgba(232,168,124,0.08); border: 1px solid rgba(232,168,124,0.2); padding: 0.3rem 0.75rem; border-radius: var(--radius-xl); cursor: pointer; font-family: var(--font-body); transition: background 0.15s; }
+.topbar-end-btn:hover { background: rgba(232,168,124,0.15); }
+
+/* STORY CANVAS */
+.canvas-area { position: relative; background: var(--bg-primary); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+#canvas-image, #canvas-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--bg-primary); transition: opacity 0.8s ease; }
+#canvas-image.hidden, #canvas-video.hidden { opacity: 0; pointer-events: none; }
+#canvas-image.entering, #canvas-video.entering { opacity: 1; }
+.canvas-placeholder { text-align: center; color: var(--text-muted); }
+.canvas-placeholder.hidden { display: none; }
+.canvas-placeholder svg { margin-bottom: 0.75rem; opacity: 0.3; }
+.canvas-placeholder p { font-size: 0.9rem; }
+.canvas-placeholder .hint { font-size: 0.75rem; margin-top: 0.5rem; color: var(--text-muted); opacity: 0.6; }
+
+/* Narration overlay */
+.narration-bar { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); max-width: 70%; background: var(--bg-overlay); backdrop-filter: blur(12px); padding: 0.65rem 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); font-size: 0.85rem; font-style: italic; color: var(--text-secondary); text-align: center; transition: opacity 0.5s ease; }
+.narration-bar.hidden { opacity: 0; pointer-events: none; }
+
+/* Camera PIP */
+.camera-pip { position: absolute; bottom: 1rem; right: 1rem; width: 180px; height: 135px; border-radius: var(--radius-md); background: var(--bg-elevated); border: 2px solid var(--border-subtle); overflow: hidden; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s; }
+.camera-pip.hidden { opacity: 0; pointer-events: none; }
+.camera-pip video { width: 100%; height: 100%; object-fit: cover; }
+.camera-pip-close { position: absolute; top: 4px; right: 4px; width: 20px; height: 20px; border-radius: 50%; background: var(--bg-overlay); border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2; }
+.camera-pip-close svg { width: 10px; height: 10px; }
+
+/* Hidden camera canvas for JPEG encoding */
+#camera-canvas { display: none; }
+
+/* TIMELINE */
+.timeline { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); overflow-x: auto; min-height: 52px; }
+.scene-thumb { width: 64px; height: 38px; border-radius: 6px; background: var(--bg-elevated); border: 2px solid transparent; flex-shrink: 0; cursor: pointer; transition: border-color 0.2s; overflow: hidden; position: relative; }
+.scene-thumb:hover { border-color: var(--border-light); }
+.scene-thumb.active { border-color: var(--accent-warm); }
+.scene-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.scene-label { position: absolute; bottom: 0; left: 0; right: 0; font-size: 0.45rem; color: white; background: rgba(0,0,0,0.6); padding: 1px 3px; text-align: center; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.timeline-empty { font-size: 0.7rem; color: var(--text-muted); font-style: italic; }
+
+/* AUDIO CONTROLS */
+.audio-bar { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1.25rem; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); }
+.mic-btn { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--accent-warm); background: rgba(232,168,124,0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s, transform 0.15s; flex-shrink: 0; }
+.mic-btn:hover { background: rgba(232,168,124,0.2); transform: scale(1.05); }
+.mic-btn.active { background: rgba(232,168,124,0.25); animation: micPulse 1.5s infinite; }
+@keyframes micPulse { 0%,100%{box-shadow:0 0 0 0 rgba(232,168,124,0.3)}50%{box-shadow:0 0 0 8px rgba(232,168,124,0)} }
+.mic-icon.hidden { display: none; }
+.camera-btn { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--border-light); background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s, border-color 0.2s; flex-shrink: 0; }
+.camera-btn:hover { border-color: var(--accent-blue); }
+.camera-btn.active { border-color: var(--accent-green); background: rgba(123,196,127,0.1); }
+.waveform-area { flex: 0 0 120px; height: 32px; background: var(--bg-elevated); border-radius: var(--radius-sm); overflow: hidden; }
+.waveform-area canvas { width: 100%; height: 100%; }
+.text-input { flex: 1; height: 36px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 18px; padding: 0 1rem; font-family: var(--font-body); font-size: 0.85rem; color: var(--text-primary); outline: none; transition: border-color 0.2s; }
+.text-input::placeholder { color: var(--text-muted); }
+.text-input:focus { border-color: var(--accent-warm); }
+.send-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--gradient-primary); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: transform 0.15s; }
+.send-btn:hover { transform: scale(1.05); }
+.music-toggle { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: var(--text-muted); cursor: pointer; padding: 0.3rem 0.6rem; border-radius: var(--radius-xl); background: var(--bg-elevated); border: 1px solid var(--border-subtle); transition: border-color 0.2s; flex-shrink: 0; }
+.music-toggle:hover { border-color: var(--border-light); }
+.music-toggle.active { color: var(--accent-green); border-color: rgba(123,196,127,0.3); }
+</style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div class="splash" id="splash-screen">
+    <div class="splash-orb splash-orb-1"></div>
+    <div class="splash-orb splash-orb-2"></div>
+    <div class="splash-content">
+        <div class="splash-logo">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="url(#sG)" stroke-width="2"/><path d="M18 16L34 24L18 32V16Z" fill="url(#sG)"/><defs><linearGradient id="sG" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#E8A87C"/><stop offset="1" stop-color="#D4789C"/></linearGradient></defs></svg>
+            <span class="splash-logo-text">StoryLine</span>
+        </div>
+        <p class="splash-tagline">Your voice. Your vision. Your story.</p>
+        <button class="splash-btn" id="btn-start">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Begin Your Story
+        </button>
+        <p class="splash-hint">Microphone &amp; camera access recommended for full experience</p>
+    </div>
+</div>
+
+<!-- MAIN APP -->
+<div class="app hidden" id="app">
+    <!-- Top Bar -->
+    <div class="topbar">
+        <a href="index.html" class="topbar-brand">StoryLine</a>
+        <div class="topbar-center">
+            <span class="mood-badge" id="mood-indicator">Mood: —</span>
+            <span class="topbar-status">
+                <span class="status-dot disconnected" id="connection-status"></span>
+                Live
+            </span>
+        </div>
+        <div class="topbar-right">
+            <a href="index.html" class="topbar-link">Home</a>
+            <button class="topbar-end-btn" id="btn-end">End Story</button>
+        </div>
+    </div>
+
+    <!-- Story Canvas -->
+    <div class="canvas-area" id="story-canvas">
+        <div class="canvas-placeholder" id="canvas-placeholder">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <p>Speak or type to begin your story</p>
+            <p class="hint">The AI will generate scenes as you narrate</p>
+        </div>
+        <img id="canvas-image" class="hidden" alt="">
+        <video id="canvas-video" class="hidden" autoplay playsinline muted></video>
+
+        <!-- Narration overlay -->
+        <div class="narration-bar hidden" id="narration-overlay">
+            <span id="narration-text"></span>
+        </div>
+
+        <!-- Camera PIP -->
+        <div class="camera-pip hidden" id="camera-pip">
+            <video id="camera-preview" autoplay playsinline muted></video>
+            <button class="camera-pip-close" id="btn-toggle-camera">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hidden canvas for camera JPEG encoding -->
+    <canvas id="camera-canvas"></canvas>
+
+    <!-- Timeline -->
+    <div class="timeline" id="timeline-track">
+        <span class="timeline-empty">Scenes will appear here as your story unfolds...</span>
+    </div>
+
+    <!-- Audio Controls -->
+    <div class="audio-bar">
+        <div class="mic-btn" id="btn-mic">
+            <svg id="mic-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8A87C" stroke-width="2" class="hidden">
+                <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+                <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+            <svg id="mic-muted-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a5760" stroke-width="2">
+                <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+                <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+                <line x1="1" y1="1" x2="23" y2="23" stroke="#E07070" stroke-width="2.5"/>
+            </svg>
+        </div>
+
+        <div class="camera-btn" id="btn-camera" title="Toggle camera">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polygon points="23 7 16 12 23 17 23 7"/>
+                <rect x="1" y="5" width="15" height="14" rx="2"/>
+            </svg>
+        </div>
+
+        <div class="waveform-area">
+            <canvas id="waveform-canvas" width="240" height="64"></canvas>
+        </div>
+
+        <input type="text" class="text-input" placeholder="Or type your story direction..." id="text-input">
+        <button class="send-btn" id="btn-send">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <div class="music-toggle active" id="musicToggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            Music
+        </div>
+    </div>
+
+    <!-- Background music player -->
+    <audio id="bg-music" loop></audio>
+</div>
+
+<script type="module" src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(brew --version)",
+      "Read(//Users/maru/development/**)",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//usr/local/bin/**)",
+      "Bash(curl -s https://storage.googleapis.com/flutter_infra_release/releases/releases_macos.json)",
+      "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); stable=[r for r in data[''releases''] if r[''channel'']==''stable''][0]; print\\(stable[''version''], stable[''archive'']\\)\")",
+      "Bash(mkdir -p ~/development)",
+      "Bash(curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_arm64_3.41.4-stable.zip)",
+      "Bash(unzip -q flutter_macos_arm64_3.41.4-stable.zip)",
+      "Bash(export PATH=\"$HOME/development/flutter/bin:$PATH\")",
+      "Bash(flutter --version)",
+      "Bash(flutter devices)",
+      "Bash(flutter pub get)",
+      "Bash(jobs -l)",
+      "Bash(wait 19729)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(flutter run -d macos)"
+    ]
+  }
+}

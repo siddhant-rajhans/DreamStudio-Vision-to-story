@@ -1,0 +1,6 @@
+google-adk>=1.26.0
+google-genai
+google-cloud-storage
+fastapi[standard]
+uvicorn[standard]
+python-dotenv

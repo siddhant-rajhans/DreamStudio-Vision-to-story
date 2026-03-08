@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Story — StoryLine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-elevated: #1a1a28;
+    --bg-overlay: rgba(10,10,15,0.85);
+    --text-primary: #e8e6e3;
+    --text-secondary: #9a97a0;
+    --text-muted: #5a5760;
+    --accent-warm: #E8A87C;
+    --accent-pink: #D4789C;
+    --accent-blue: #6C8EBF;
+    --accent-green: #7BC47F;
+    --accent-red: #E07070;
+    --gradient-primary: linear-gradient(135deg, #E8A87C, #D4789C);
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-light: rgba(255,255,255,0.1);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* NAV */
+.nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; max-width: 960px; margin: 0 auto; }
+.nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; font-family: var(--font-display); font-size: 1rem; font-weight: 600; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.nav-right { display: flex; gap: 0.75rem; }
+.btn-sm { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; padding: 0.5rem 1rem; border-radius: var(--radius-xl); cursor: pointer; text-decoration: none; transition: all 0.15s; }
+.btn-outline { background: transparent; border: 1px solid var(--border-light); color: var(--text-primary); }
+.btn-outline:hover { background: rgba(255,255,255,0.05); }
+.btn-filled { background: var(--gradient-primary); border: none; color: var(--bg-primary); font-weight: 600; }
+.btn-filled:hover { transform: translateY(-1px); box-shadow: 0 0 40px rgba(232,168,124,0.12); }
+
+/* STORY HEADER */
+.story-header { text-align: center; padding: 3rem 0 2rem; border-bottom: 1px solid var(--border-subtle); margin-bottom: 2.5rem; }
+.story-complete-badge { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-green); background: rgba(123,196,127,0.08); border: 1px solid rgba(123,196,127,0.2); padding: 0.35rem 0.85rem; border-radius: var(--radius-xl); margin-bottom: 1.25rem; }
+.story-complete-badge svg { width: 14px; height: 14px; }
+.story-title { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.2; }
+.story-meta { display: flex; align-items: center; justify-content: center; gap: 1.5rem; font-size: 0.85rem; color: var(--text-muted); }
+.story-meta-item { display: flex; align-items: center; gap: 0.35rem; }
+
+/* STATS */
+.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 3rem; }
+.stat-card { background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem; text-align: center; }
+.stat-card-value { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.25rem; }
+.stat-card-value.warm { color: var(--accent-warm); }
+.stat-card-value.pink { color: var(--accent-pink); }
+.stat-card-value.blue { color: var(--accent-blue); }
+.stat-card-value.green { color: var(--accent-green); }
+.stat-card-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* STORYBOARD */
+.storyboard-heading { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.storyboard-heading svg { color: var(--accent-warm); }
+.scene-card { display: grid; grid-template-columns: 360px 1fr; gap: 1.5rem; background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.25rem; transition: border-color 0.3s; }
+.scene-card:hover { border-color: var(--border-light); }
+.scene-image { aspect-ratio: 16/9; background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.scene-image-placeholder { font-size: 0.8rem; color: var(--text-muted); text-align: center; padding: 1rem; }
+.scene-image .scene-number { position: absolute; top: 0.75rem; left: 0.75rem; background: var(--bg-overlay); backdrop-filter: blur(8px); padding: 0.25rem 0.6rem; border-radius: var(--radius-sm); font-size: 0.7rem; font-weight: 600; color: var(--accent-warm); }
+.scene-type-badge { position: absolute; top: 0.75rem; right: 0.75rem; padding: 0.2rem 0.5rem; border-radius: var(--radius-sm); font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.scene-type-badge.image { background: rgba(212,120,156,0.15); color: var(--accent-pink); }
+.scene-type-badge.climax { background: rgba(224,112,112,0.15); color: var(--accent-red); }
+.scene-details { padding: 1.5rem 1.5rem 1.5rem 0; }
+.scene-details h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; }
+.scene-narration { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.65; font-style: italic; margin-bottom: 1rem; border-left: 2px solid var(--accent-warm); padding-left: 0.75rem; }
+.scene-mood { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.25rem 0.6rem; border-radius: var(--radius-xl); }
+.mood-mysterious { color: var(--accent-blue); background: rgba(108,142,191,0.1); }
+.mood-tense { color: var(--accent-red); background: rgba(224,112,112,0.1); }
+.mood-wonder { color: var(--accent-warm); background: rgba(232,168,124,0.1); }
+.mood-triumphant { color: var(--accent-green); background: rgba(123,196,127,0.1); }
+
+/* MUSIC */
+.music-section { margin-bottom: 3rem; }
+.music-card { background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem; }
+.music-icon { width: 56px; height: 56px; border-radius: var(--radius-md); background: linear-gradient(135deg, rgba(123,196,127,0.15), rgba(123,196,127,0.05)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.music-info { flex: 1; }
+.music-info h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.2rem; }
+.music-info p { font-size: 0.85rem; color: var(--text-muted); }
+.music-waveform { height: 40px; flex: 0 0 200px; background: var(--bg-elevated); border-radius: var(--radius-sm); position: relative; overflow: hidden; }
+.music-waveform-bars { display: flex; align-items: flex-end; gap: 2px; height: 100%; padding: 4px; }
+.music-waveform-bars span { flex: 1; background: var(--accent-green); border-radius: 1px; opacity: 0.5; }
+
+/* ACTIONS */
+.actions-section { display: flex; align-items: center; justify-content: center; gap: 1rem; padding: 2rem 0 4rem; border-top: 1px solid var(--border-subtle); margin-top: 2rem; }
+
+/* FOOTER */
+.output-footer { text-align: center; padding: 2rem 0; font-size: 0.75rem; color: var(--text-muted); }
+.output-footer a { color: var(--accent-warm); text-decoration: none; }
+
+@media (max-width: 768px) {
+    .scene-card { grid-template-columns: 1fr; }
+    .scene-details { padding: 1.25rem; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .story-title { font-size: 1.8rem; }
+    .music-waveform { display: none; }
+    .story-meta { flex-wrap: wrap; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <a href="index.html" class="nav-brand">
+        <svg width="22" height="22" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="url(#oG)" stroke-width="2"/><path d="M18 16L34 24L18 32V16Z" fill="url(#oG)"/><defs><linearGradient id="oG" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#E8A87C"/><stop offset="1" stop-color="#D4789C"/></linearGradient></defs></svg>
+        StoryLine
+    </a>
+    <div class="nav-right">
+        <a href="studio.html" class="btn-sm btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            New Story
+        </a>
+        <button class="btn-sm btn-filled" onclick="alert('Share link copied!')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+        </button>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!-- STORY HEADER -->
+    <div class="story-header">
+        <div class="story-complete-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Story Complete
+        </div>
+        <h1 class="story-title">The City That Shouldn't Exist</h1>
+        <div class="story-meta">
+            <span class="story-meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 4 min 32 sec</span>
+            <span class="story-meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> 5 Scenes</span>
+            <span class="story-meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg> Voice-directed</span>
+            <span class="story-meta-item">March 8, 2026</span>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+        <div class="stat-card"><div class="stat-card-value warm">5</div><div class="stat-card-label">Images</div></div>
+        <div class="stat-card"><div class="stat-card-value pink">1</div><div class="stat-card-label">Video Clip</div></div>
+        <div class="stat-card"><div class="stat-card-value blue">2</div><div class="stat-card-label">Music Tracks</div></div>
+        <div class="stat-card"><div class="stat-card-value green">4</div><div class="stat-card-label">Mood Shifts</div></div>
+    </div>
+
+    <!-- STORYBOARD -->
+    <div class="storyboard-section" style="margin-bottom:3rem">
+        <h2 class="storyboard-heading">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Storyboard
+        </h2>
+        <div id="scenesContainer"></div>
+    </div>
+
+    <!-- MUSIC -->
+    <div class="music-section">
+        <h2 class="storyboard-heading">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            Soundtrack
+        </h2>
+        <div class="music-card" style="margin-bottom:0.75rem">
+            <div class="music-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7BC47F" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+            <div class="music-info"><h4>Ambient Mystery</h4><p>Low strings, ethereal pads, sparse piano &middot; 30 sec</p></div>
+            <div class="music-waveform"><div class="music-waveform-bars" id="wave1"></div></div>
+        </div>
+        <div class="music-card">
+            <div class="music-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7BC47F" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+            <div class="music-info"><h4>Triumphant Resolve</h4><p>Soaring brass, full orchestra, hopeful theme &middot; 30 sec</p></div>
+            <div class="music-waveform"><div class="music-waveform-bars" id="wave2"></div></div>
+        </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions-section">
+        <a href="studio.html" class="btn-sm btn-filled">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Create Another Story
+        </a>
+        <button class="btn-sm btn-outline" onclick="alert('Downloading assets...')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download All
+        </button>
+        <button class="btn-sm btn-outline" onclick="alert('Share link copied!')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share Story
+        </button>
+    </div>
+</div>
+
+<footer class="output-footer">
+    Made with <a href="index.html">StoryLine</a> &middot; Gemini Live API &middot; Imagen 4 &middot; Veo 3.1 &middot; Lyria 2
+</footer>
+
+<script>
+// Scene data
+const scenes = [
+    { num: 1, title: 'The Fog Descends', narration: 'The camera pushes through a wall of mist. Below us, a skyline shimmers that no map has ever charted. Towers of black glass twist upward like frozen lightning.', mood: 'mysterious', moodLabel: 'Mysterious', type: 'image', typeLabel: 'Image', icon: 'image' },
+    { num: 2, title: 'A Figure in the Market', narration: 'We cut to street level. A crowded market beneath neon lanterns. Through the chaos, one figure stands perfectly still — a woman in a red coat, watching.', mood: 'tense', moodLabel: 'Tense', type: 'image', typeLabel: 'Image', icon: 'image' },
+    { num: 3, title: 'The Map Room', narration: "She leads us through a hidden door, down a spiral staircase. The walls are covered in hand-drawn maps of places that don't exist — or shouldn't.", mood: 'wonder', moodLabel: 'Wonder', type: 'image', typeLabel: 'Image', icon: 'image' },
+    { num: 4, title: 'The City Awakens', narration: "She places her hand on the central map and the room trembles. Through the glass ceiling above, the city's towers begin to rearrange themselves, shifting like a living puzzle.", mood: 'tense', moodLabel: 'Tense', type: 'climax', typeLabel: 'Climax', icon: 'video' },
+    { num: 5, title: 'A New Dawn', narration: "As the first light breaks over the rearranged skyline, the woman in red turns to us with a knowing smile. 'Now it's your city too,' she says. The fog lifts. Roll credits.", mood: 'triumphant', moodLabel: 'Triumphant', type: 'image', typeLabel: 'Image', icon: 'image' },
+];
+
+const imgSvg = '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5a5760" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
+const vidSvg = '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5a5760" stroke-width="1"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>';
+
+const container = document.getElementById('scenesContainer');
+scenes.forEach(s => {
+    container.innerHTML += `<div class="scene-card">
+        <div class="scene-image">
+            <div class="scene-image-placeholder">${s.icon === 'video' ? vidSvg : imgSvg}<div>${s.icon === 'video' ? 'Generated Video Clip' : 'Generated Image'}</div></div>
+            <div class="scene-number">Scene ${s.num}</div>
+            <div class="scene-type-badge ${s.type}">${s.typeLabel}</div>
+        </div>
+        <div class="scene-details">
+            <h3>${s.title}</h3>
+            <div class="scene-narration">"${s.narration}"</div>
+            <span class="scene-mood mood-${s.mood}">${s.moodLabel}</span>
+        </div>
+    </div>`;
+});
+
+// Waveform bars
+['wave1','wave2'].forEach(id => {
+    const el = document.getElementById(id);
+    for (let i = 0; i < 40; i++) {
+        const bar = document.createElement('span');
+        bar.style.height = (15 + Math.random() * 85) + '%';
+        el.appendChild(bar);
+    }
+});
+</script>
+</body>
+</html>

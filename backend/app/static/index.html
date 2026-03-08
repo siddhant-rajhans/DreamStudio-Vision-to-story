@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoryLine — AI-Powered Cinematic Story Director</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/landing.css">
+</head>
+<body>
+
+    <!-- ================================================================= -->
+    <!-- NAVIGATION                                                        -->
+    <!-- ================================================================= -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">
+                <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="22" stroke="url(#navGrad)" stroke-width="2"/>
+                    <path d="M18 16L34 24L18 32V16Z" fill="url(#navGrad)"/>
+                    <defs><linearGradient id="navGrad" x1="0" y1="0" x2="48" y2="48">
+                        <stop stop-color="#E8A87C"/><stop offset="1" stop-color="#D4789C"/>
+                    </linearGradient></defs>
+                </svg>
+                <span>StoryLine</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#tech">Tech Stack</a>
+                <a href="#team">Team</a>
+                <a href="/static/studio.html" class="nav-cta">Launch Studio</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================================================================= -->
+    <!-- HERO SECTION                                                      -->
+    <!-- ================================================================= -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">Google Cloud x Gemini AI Hackathon — Columbia University 2026</div>
+            <h1 class="hero-title">
+                Your Voice Becomes<br>
+                <span class="hero-gradient">Cinema.</span>
+            </h1>
+            <p class="hero-subtitle">
+                Speak naturally. Point your camera. StoryLine — an AI story director — sees, listens,
+                and creates storyboard images, video clips, and ambient music, all woven into a
+                cinematic narrative through live conversation.
+            </p>
+            <div class="hero-actions">
+                <a href="/static/studio.html" class="btn-primary btn-lg">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    Begin Your Story
+                </a>
+                <a href="#how-it-works" class="btn-ghost btn-lg">
+                    See How It Works
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value">&lt;1s</span>
+                    <span class="stat-label">Voice Latency</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">AI Models</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-value">3</span>
+                    <span class="stat-label">Media Types</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-value">0</span>
+                    <span class="stat-label">Text Boxes</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero visual mockup -->
+        <div class="hero-visual">
+            <div class="mockup-browser">
+                <div class="mockup-bar">
+                    <div class="mockup-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="mockup-url">storyline.app/studio</div>
+                </div>
+                <div class="mockup-screen">
+                    <div class="mockup-topbar">
+                        <span class="mockup-brand">StoryLine</span>
+                        <span class="mockup-mood">Mood: Mysterious</span>
+                        <span class="mockup-dot"></span>
+                    </div>
+                    <div class="mockup-canvas">
+                        <div class="mockup-canvas-text">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" opacity="0.3">
+                                <circle cx="24" cy="24" r="22" stroke="#E8A87C" stroke-width="1"/>
+                                <path d="M18 16L34 24L18 32V16Z" fill="#E8A87C"/>
+                            </svg>
+                        </div>
+                        <div class="mockup-narration">
+                            "The camera pushes through the fog to reveal a city that shouldn't exist..."
+                        </div>
+                    </div>
+                    <div class="mockup-timeline">
+                        <div class="mockup-thumb active"></div>
+                        <div class="mockup-thumb"></div>
+                        <div class="mockup-thumb"></div>
+                        <div class="mockup-thumb"></div>
+                    </div>
+                    <div class="mockup-controls">
+                        <div class="mockup-mic"></div>
+                        <div class="mockup-wave"></div>
+                        <div class="mockup-input"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- FEATURES                                                          -->
+    <!-- ================================================================= -->
+    <section id="features" class="section features-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Capabilities</span>
+                <h2 class="section-title">Five Senses of Storytelling</h2>
+                <p class="section-desc">StoryLine orchestrates five Google AI models simultaneously, turning your voice and camera into a full cinematic production pipeline.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card feature-card-lg">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #E8A87C33, #E8A87C11)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E8A87C" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+                    </div>
+                    <h3>Voice Conversation</h3>
+                    <p>Full-duplex voice with Gemini Live API. Speak naturally, interrupt anytime, and the AI director responds with a warm narrative voice. Zero typing required.</p>
+                    <span class="feature-model">Gemini 2.5 Flash Native Audio</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #D4789C33, #D4789C11)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4789C" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    </div>
+                    <h3>Storyboard Images</h3>
+                    <p>Every scene generates a cinematic storyboard frame in 3-8 seconds. Dramatic lighting, film-quality composition.</p>
+                    <span class="feature-model">Imagen 4</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #6C8EBF33, #6C8EBF11)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6C8EBF" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                    </div>
+                    <h3>Video Clips</h3>
+                    <p>8-second cinematic clips with natively synchronized audio for climactic moments. The ultimate reveal.</p>
+                    <span class="feature-model">Veo 3.1</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #7BC47F33, #7BC47F11)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7BC47F" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    </div>
+                    <h3>Ambient Music</h3>
+                    <p>AI-generated soundtrack that shifts with the story's mood. Tense strings for suspense, soaring brass for triumph.</p>
+                    <span class="feature-model">Lyria 2</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #E0707033, #E0707011)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E07070" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    </div>
+                    <h3>Camera Vision</h3>
+                    <p>Point your camera at anything. The AI sees it and weaves it into the narrative — a red scarf becomes the thread of your story.</p>
+                    <span class="feature-model">Gemini Vision</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #9a97a033, #9a97a011)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9a97a0" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </div>
+                    <h3>Search Grounding</h3>
+                    <p>Reference a real place or historical event and the agent searches for facts, weaving truth into your fiction.</p>
+                    <span class="feature-model">Google Search</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- HOW IT WORKS                                                      -->
+    <!-- ================================================================= -->
+    <section id="how-it-works" class="section hiw-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Flow</span>
+                <h2 class="section-title">From Voice to Vision in Seconds</h2>
+                <p class="section-desc">A single WebSocket connection carries your voice and camera to the AI agent, which orchestrates everything in real-time.</p>
+            </div>
+            <div class="hiw-steps">
+                <div class="hiw-step">
+                    <div class="hiw-number">01</div>
+                    <div class="hiw-content">
+                        <h3>You Speak</h3>
+                        <p>Your microphone captures audio as raw 16-bit PCM at 16kHz. Camera frames (optional) stream at 2-4 fps as JPEG. Everything flows through one WebSocket.</p>
+                    </div>
+                    <div class="hiw-visual">
+                        <div class="hiw-icon-box">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E8A87C" stroke-width="1.5"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="hiw-connector"></div>
+                <div class="hiw-step">
+                    <div class="hiw-number">02</div>
+                    <div class="hiw-content">
+                        <h3>The Agent Thinks</h3>
+                        <p>Gemini Live API processes your voice + vision simultaneously. The StoryDirector agent decides which tools to call — image, video, music, or search — based on narrative context.</p>
+                    </div>
+                    <div class="hiw-visual">
+                        <div class="hiw-icon-box">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4789C" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="hiw-connector"></div>
+                <div class="hiw-step">
+                    <div class="hiw-number">03</div>
+                    <div class="hiw-content">
+                        <h3>Media Generates</h3>
+                        <p>Imagen 4 creates storyboard frames in ~5s. Veo 3.1 generates video clips. Lyria 2 composes mood music. All stored in Cloud Storage and streamed to you.</p>
+                    </div>
+                    <div class="hiw-visual">
+                        <div class="hiw-icon-box">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6C8EBF" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="hiw-connector"></div>
+                <div class="hiw-step">
+                    <div class="hiw-number">04</div>
+                    <div class="hiw-content">
+                        <h3>You Experience</h3>
+                        <p>The agent narrates with a warm voice while visuals materialize on your Story Canvas. A living storyboard builds scene by scene on your timeline.</p>
+                    </div>
+                    <div class="hiw-visual">
+                        <div class="hiw-icon-box">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7BC47F" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TECH STACK                                                        -->
+    <!-- ================================================================= -->
+    <section id="tech" class="section tech-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Under the Hood</span>
+                <h2 class="section-title">Full Google Cloud Stack</h2>
+                <p class="section-desc">Built entirely on Google's AI and cloud infrastructure. ADK orchestrates everything.</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-label">Agent Framework</div>
+                    <div class="tech-name">Google ADK</div>
+                    <div class="tech-detail">Bidi-streaming, tool execution, session management</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-label">Conversation</div>
+                    <div class="tech-name">Gemini Live API</div>
+                    <div class="tech-detail">Real-time voice + vision, barge-in, VAD</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-label">Images</div>
+                    <div class="tech-name">Imagen 4</div>
+                    <div class="tech-detail">Storyboard frames, ~5s latency</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-label">Video</div>
+                    <div class="tech-name">Veo 3.1</div>
+                    <div class="tech-detail">8s clips with native audio</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-label">Music</div>
+                    <div class="tech-name">Lyria 2</div>
+                    <div class="tech-detail">Mood-reactive ambient soundtracks</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-label">Backend</div>
+                    <div class="tech-name">FastAPI + Cloud Run</div>
+                    <div class="tech-detail">WebSocket handler, async, session affinity</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-label">Storage</div>
+                    <div class="tech-name">Cloud Storage</div>
+                    <div class="tech-detail">Media asset bucket for images, video, music</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-label">Grounding</div>
+                    <div class="tech-name">Google Search</div>
+                    <div class="tech-detail">Real-world facts woven into fiction</div>
+                </div>
+            </div>
+            <!-- Architecture diagram -->
+            <div class="arch-diagram">
+                <div class="arch-row">
+                    <div class="arch-box arch-client">
+                        <div class="arch-box-label">Browser Client</div>
+                        <div class="arch-box-items">Mic / Camera / Story Canvas</div>
+                    </div>
+                </div>
+                <div class="arch-arrow">WebSocket (single connection)</div>
+                <div class="arch-row">
+                    <div class="arch-box arch-server">
+                        <div class="arch-box-label">FastAPI + ADK Agent</div>
+                        <div class="arch-box-items">StoryDirector · LiveRequestQueue · Runner</div>
+                    </div>
+                </div>
+                <div class="arch-arrow">Google GenAI SDK</div>
+                <div class="arch-row arch-services">
+                    <div class="arch-service">Gemini Live</div>
+                    <div class="arch-service">Imagen 4</div>
+                    <div class="arch-service">Veo 3.1</div>
+                    <div class="arch-service">Lyria 2</div>
+                    <div class="arch-service">Search</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TEAM                                                              -->
+    <!-- ================================================================= -->
+    <section id="team" class="section team-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Team</span>
+                <h2 class="section-title">Built at Columbia</h2>
+                <p class="section-desc">Google Cloud x Gemini AI Hackathon — March 8, 2026</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E8A87C" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-role">Backend Lead</div>
+                    <div class="team-desc">ADK Agent, FastAPI, WebSocket pipeline</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4789C" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-role">Media Pipeline</div>
+                    <div class="team-desc">Imagen 4, Veo 3.1, Lyria 2, GCS</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6C8EBF" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-role">Frontend</div>
+                    <div class="team-desc">Story Canvas, AudioWorklet, camera PIP</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7BC47F" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-role">Prompt & Demo</div>
+                    <div class="team-desc">System prompt, demo script, presentation</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- CTA                                                               -->
+    <!-- ================================================================= -->
+    <section class="section cta-section">
+        <div class="container cta-inner">
+            <h2 class="cta-title">Ready to direct your story?</h2>
+            <p class="cta-desc">No text boxes. No forms. Just your voice, your imagination, and five AI models working in concert.</p>
+            <a href="/static/studio.html" class="btn-primary btn-lg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Launch Story Studio
+            </a>
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- FOOTER                                                            -->
+    <!-- ================================================================= -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <svg width="20" height="20" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="22" stroke="url(#fGrad)" stroke-width="2"/>
+                    <path d="M18 16L34 24L18 32V16Z" fill="url(#fGrad)"/>
+                    <defs><linearGradient id="fGrad" x1="0" y1="0" x2="48" y2="48">
+                        <stop stop-color="#E8A87C"/><stop offset="1" stop-color="#D4789C"/>
+                    </linearGradient></defs>
+                </svg>
+                StoryLine
+            </div>
+            <div class="footer-text">
+                Built with Gemini Live API &middot; ADK &middot; Imagen 4 &middot; Veo 3.1 &middot; Lyria 2 &middot; Google Cloud
+            </div>
+            <div class="footer-text">Columbia University &middot; Google Cloud x Gemini AI Hackathon &middot; March 2026</div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Navbar background on scroll
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('nav-scrolled', window.scrollY > 40);
+        });
+
+        // Intersection observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card, .hiw-step, .tech-card, .team-card').forEach(el => {
+            el.classList.add('fade-up');
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
